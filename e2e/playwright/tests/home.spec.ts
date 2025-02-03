@@ -16,7 +16,7 @@ test.beforeEach('SHOULD open URL', async ({ page }) => {
 });
 
 test.describe('Home Page', () => {
-  test('SHOULD display start creating today button', async ({
+  test('SHOULD display start creating today button @pr-validation', async ({
     homePageElements
   }) => {
     await homePageElements.assertStartCreatingTodayButton();
@@ -28,7 +28,7 @@ test.describe('Home Page', () => {
     await homePageElements.assertActiveHomePage();
   });
 
-  test('SHOULD show the section header', async ({
+  test('SHOULD show the section header @pr-validation', async ({
     commonPageElements
   }) => {
     const sectionHeader = 'A FREE AND SIMPLE LANDING PAGE';
@@ -42,7 +42,7 @@ test.describe('Home Page', () => {
     await commonPageElements.assertSectionHeaderTwo(sectionDescription);
   })
 
-  test('SHOULD show Home as not active page when other page is selected', async ({
+  test('SHOULD show Home as not active page when other page is selected @post-pr-validation', async ({
     homePageElements,
     aboutPageElements
   }) => {

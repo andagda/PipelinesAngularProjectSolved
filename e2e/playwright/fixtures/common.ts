@@ -9,13 +9,11 @@
    private readonly page: Page;
    private readonly aboutPageLink: Locator;
    private readonly sectionText: Locator;
-   private readonly sectionSubTitle: Locator;
  
    constructor(public readonly pageInit: Page) {
      this.page = pageInit;
      this.aboutPageLink = this.page.locator('a[href="/about"]');
      this.sectionText = this.page.locator('.section-heading');
-     this.sectionSubTitle = this.page.locator('.section-subtitle');
    }
 
    public async clickAboutPageLink(){

@@ -17,7 +17,7 @@ test.beforeEach('SHOULD open URL', async ({ page, aboutPageElements }) => {
 });
 
 test.describe('About Page', () => {
-  test('SHOULD show About as active page', async ({
+  test('SHOULD show About as active page @pr-validation', async ({
     aboutPageElements
   }) => {
     await aboutPageElements.assertActiveAboutPage();
@@ -37,14 +37,14 @@ test.describe('About Page', () => {
     await commonPageElements.assertSectionHeaderTwo(sectionTitle);
   })
 
-  test('SHOULD have displayed 4 description about the sample application ', async ({
+  test('SHOULD have displayed 4 description about the sample application @pr-validation', async ({
     aboutPageElements
   }) => {
     const descriptionCount = 4;
     await aboutPageElements.confirmAboutDescriptionCount(descriptionCount);
   })
 
-  test('SHOULD show About page as not active page when other page is selected', async ({
+  test('SHOULD show About page as not active page when other page is selected @post-pr-validation', async ({
     homePageElements,
     aboutPageElements
   }) => {
