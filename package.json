@@ -39,6 +39,7 @@
     "@angular/cli": "^17.2.2",
     "@angular/compiler-cli": "^17.2.3",
     "@angular/language-service": "^17.2.3",
+    "@playwright/test": "^1.50.0",
     "@types/flickity": "^2.2.11",
     "@types/jasmine": "~5.1.4",
     "@types/jasminewd2": "~2.0.13",
