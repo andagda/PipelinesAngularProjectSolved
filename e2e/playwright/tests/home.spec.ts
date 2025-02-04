@@ -5,49 +5,46 @@
 
 import { test } from '../fixtures/base';
 
-
 test.beforeEach('SHOULD open URL', async ({ page }) => {
-  const url = process.env.URL;
-  if (url) {
-      await page.goto(url);
-    } else {
-      throw new Error('URL is not defined in the environment variables');
-    }
+	const url = process.env.URL;
+	if (url) {
+		await page.goto(url);
+	} else {
+		throw new Error('URL is not defined in the environment variables');
+	}
 });
 
 test.describe('Home Page', () => {
-  test('SHOULD display start creating today button @pr-validation', async ({
-    homePageElements
-  }) => {
-    await homePageElements.assertStartCreatingTodayButton();
-  });
+	test('SHOULD display start creating today button @pr-validation', async ({
+		homePageElements,
+	}) => {
+		await homePageElements.assertStartCreatingTodayButton();
+	});
 
-  test('SHOULD show Home as active page', async ({
-    homePageElements
-  }) => {
-    await homePageElements.assertActiveHomePage();
-  });
+	test('SHOULD show Home as active page', async ({ homePageElements }) => {
+		await homePageElements.assertActiveHomePage();
+	});
 
-  test('SHOULD show the section header @pr-validation', async ({
-    commonPageElements
-  }) => {
-    const sectionHeader = 'A FREE AND SIMPLE LANDING PAGE';
-    await commonPageElements.assertSectionHeaderOne(sectionHeader);
-  })
+	test('SHOULD show the section header @pr-validation', async ({
+		commonPageElements,
+	}) => {
+		const sectionHeader = 'A FREE AND SIMPLE LANDING PAGE';
+		await commonPageElements.assertSectionHeaderOne(sectionHeader);
+	});
 
-  test('SHOULD show the section description', async ({
-    commonPageElements
-  }) => {
-    const sectionDescription = 'Namari is free landing page template you can use for your projects. It is free to use for your personal and commercial projects, enjoy!';
-    await commonPageElements.assertSectionHeaderTwo(sectionDescription);
-  })
+	test('SHOULD show the section description', async ({
+		commonPageElements,
+	}) => {
+		const sectionDescription =
+			'Namari is free landing page template you can use for your projects. It is free to use for your personal and commercial projects, enjoy!';
+		await commonPageElements.assertSectionHeaderTwo(sectionDescription);
+	});
 
-  test('SHOULD show Home as not active page when other page is selected @post-pr-validation', async ({
-    homePageElements,
-    aboutPageElements
-  }) => {
-    await aboutPageElements.clickAboutPageLink();
-    await homePageElements.assertInactiveHomePage();
-  });
-
+	test('SHOULD show Home as not active page when other page is selected @post-pr-validation', async ({
+		homePageElements,
+		aboutPageElements,
+	}) => {
+		await aboutPageElements.clickAboutPageLink();
+		await homePageElements.assertInactiveHomePage();
+	});
 });
