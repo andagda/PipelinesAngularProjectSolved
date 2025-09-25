@@ -41,9 +41,10 @@ jobs:
         run: |
           npm run test
 
-      - name: Upload test results
-        uses: actions/upload-artifact@v4
+      - name: Publish JUnit test results
         if: always()
+        uses: dorny/test-reporter@v1
         with:
-          name: playwright-test-results
+          name: Playwright Tests
           path: test-results/results.xml
+          reporter: java-junit
