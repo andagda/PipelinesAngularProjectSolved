@@ -1,0 +1,8 @@
+name: Angular Pipeline
+
+on: 
+   push:
+     branches:
+       - main
+
+
