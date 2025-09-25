@@ -12,7 +12,7 @@ jobs:
 
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
       - name: Checkout code
@@ -24,15 +24,31 @@ jobs:
           node-version: '20'
 
       - name: Install dependencies
+        shell: pwsh
         run: |
           npm install
           npx playwright install
 
-
-      - name: Start Angular application
+      - name: Start Angular application in background
+        shell: pwsh
         run: |
-          npm run start
+          Write-Host "Starting Angular application in background..."
+          $job = Start-Job { npm run start }
+          Write-Host "Job started with ID: $($job.Id)"
+          # Add a delay to let the server start
+          Start-Sleep -Seconds 10
 
       - name: Run tests
+        shell: pwsh
         run: |
           npx playwright test e2e/playwright/tests
+
+      - name: Stop background job
+        if: always()
+        shell: pwsh
+        run: |
+          if (Get-Job -State Running) {
+            Stop-Job -Id (Get-Job).Id
+            Remove-Job -Id (Get-Job).Id
+            Write-Host "Background job stopped."
+          }
