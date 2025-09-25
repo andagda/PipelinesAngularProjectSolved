@@ -5,6 +5,8 @@ on:
      branches:
        - main
 
+env:
+  URL: "http://localhost:4200/"
 
 jobs:
 
@@ -29,7 +31,7 @@ jobs:
 
       - name: Start Angular application
         run: |
-          ng serve
+          npm run start
 
       - name: Run tests
         run: |
