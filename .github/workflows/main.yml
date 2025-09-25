@@ -5,8 +5,14 @@ on:
      branches:
        - main
 
-env:
-  URL: "http://localhost:4200/"
+permissions:
+  contents: read
+  actions: read
+  checks: write
+  pull-requests: write
+
+# env:
+ # URL: "http://localhost:4200/"
 
 jobs:
 
