@@ -11,8 +11,8 @@ permissions:
   checks: write
   pull-requests: write
 
-# env:
- # URL: "http://localhost:4200/"
+env:
+   URL: "http://localhost:4200/"
 
 jobs:
 
