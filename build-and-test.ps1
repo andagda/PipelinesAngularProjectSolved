@@ -10,7 +10,6 @@ Write-Host "Angular application started with Job ID: $($job.Id)" -ForegroundColo
 # Wait for the server to start
 Start-Sleep -Seconds 10
 Write-Host "Running Playwright tests..." -ForegroundColor Blue
-# Rely on reporters configured in playwright.config.ts (which writes junit to results.xml)
-npx playwright test e2e/playwright/tests --workers=4
+npm run test
 Stop-Job $job.Id
 Write-Host "Angular application stopped." -ForegroundColor Green
