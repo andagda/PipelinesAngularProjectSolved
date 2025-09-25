@@ -41,10 +41,9 @@ jobs:
         run: |
           npm run test
 
-      - name: Publish JUnit test results
+      - name: Publish Playwright Tests
         if: always()
         uses: EnricoMi/publish-unit-test-result-action@v2
         with:
-          name: Playwright Tests
-          path: test-results/results.xml
-          reporter: java-junit
+          files : |
+            test-results/results.xml
