@@ -1,8 +1,36 @@
 name: Angular Pipeline
 
-on: 
+on:
    push:
      branches:
        - main
 
 
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: |
+          npm install
+          npx playwright install
+
+
+      - name: Start Angular application
+        run: |
+          ng serve
+
+      - name: Run tests
+        run: |
+          npx playwright test e2e/playwright/tests
