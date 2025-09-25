@@ -27,6 +27,7 @@ jobs:
         run: |
           npm install
           npx playwright install
+          npx playwright install-deps
 
       - name: Start Angular application in background
         run: |
