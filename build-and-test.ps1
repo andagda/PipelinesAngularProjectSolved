@@ -5,8 +5,12 @@ npm install
 # Install playwright browser dependencies
 npx playwright install
 Write-Host "Starting the Angular application in the background..." -ForegroundColor Blue
-$job = Start-Job { ng serve }
+$job = Start-Job { ng serve --host 0.0.0.0 --port 4200 }
 Write-Host "Angular application started with Job ID: $($job.Id)" -ForegroundColor Cyan
-npx playwright test e2e/playwright/tests
+# Wait for the server to start
+Start-Sleep -Seconds 10
+Write-Host "Running Playwright tests..." -ForegroundColor Blue
+# Rely on reporters configured in playwright.config.ts (which writes junit to results.xml)
+npx playwright test e2e/playwright/tests --workers=4
 Stop-Job $job.Id
 Write-Host "Angular application stopped." -ForegroundColor Green

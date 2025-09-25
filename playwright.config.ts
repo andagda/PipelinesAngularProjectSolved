@@ -5,6 +5,11 @@ export default defineConfig({
 	fullyParallel: true,
 	workers: 2,
 	retries: 2,
+	reporter: [
+		['junit', { outputFile: 'test-results/results.xml' }],
+		['html', { open: 'never' }],
+	],
+
 	use: {
 		/* Base URL to use in actions like `await page.goto('/')`. */
 		baseURL: process.env.URL,
