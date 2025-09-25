@@ -12,7 +12,7 @@ jobs:
 
   build:
 
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
@@ -24,31 +24,25 @@ jobs:
           node-version: '20'
 
       - name: Install dependencies
-        shell: pwsh
         run: |
           npm install
           npx playwright install
 
       - name: Start Angular application in background
-        shell: pwsh
         run: |
-          Write-Host "Starting Angular application in background..."
-          $job = Start-Job { npm run start }
-          Write-Host "Job started with ID: $($job.Id)"
-          # Add a delay to let the server start
-          Start-Sleep -Seconds 10
+          echo "Starting Angular application in background..."
+          npm run start -- --host 0.0.0.0 --port 4200 &
+          sleep 10
+          # Wait for server to be ready
+          curl -f http://localhost:4200/ || (echo "Server not ready" && exit 1)
 
       - name: Run tests
-        shell: pwsh
         run: |
-          npx playwright test e2e/playwright/tests
+          npx playwright test e2e/playwright/tests --reporter=junit --workers=4
 
-      - name: Stop background job
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
         if: always()
-        shell: pwsh
-        run: |
-          if (Get-Job -State Running) {
-            Stop-Job -Id (Get-Job).Id
-            Remove-Job -Id (Get-Job).Id
-            Write-Host "Background job stopped."
-          }
+        with:
+          name: playwright-test-results
+          path: test-results/
