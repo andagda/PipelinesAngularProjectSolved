@@ -2,7 +2,7 @@ name: Post-Main Build and Test
 
 on:
   workflow_run:
-    workflows: ["Angular Pipeline"]
+    workflows: ["Main Pipeline"]
     types:
       - completed
 
