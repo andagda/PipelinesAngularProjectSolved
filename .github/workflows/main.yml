@@ -1,4 +1,4 @@
-name: Angular Pipeline
+name: Main Pipeline
 
 on:
    push:
